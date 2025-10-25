@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import {environment} from "../../../environments/environment.prod";
 
 @Component({
     selector: 'app-friends-section',
@@ -43,10 +44,10 @@ export class FriendsSectionComponent implements OnInit {
     constructor(private http: HttpClient) {}
 
     ngOnInit() {
-        this.http.get<any[]>(`/api/follows/following/${this.userId}`)
+        this.http.get<any[]>(`${environment.apiUrl}/api/follows/following/${this.userId}`)
             .subscribe(data => this.following = data);
 
-        this.http.get<any[]>(`/api/follows/followers/${this.userId}`)
+        this.http.get<any[]>(`${environment.apiUrl}/api/follows/followers/${this.userId}`)
             .subscribe(data => this.followers = data);
     }
 }
