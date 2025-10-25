@@ -1,0 +1,38 @@
+<div class="min-h-screen flex flex-col items-center p-4 bg-[var(--color-bg)] text-[var(--color-text)]">
+
+    <!-- Título -->
+    <h1 class="text-2xl font-bold mb-4">Welcome to Hotspot 🎉</h1>
+
+    <!-- Friends section -->
+    <div *ngIf="friends.length > 0" class="w-full p-4 rounded-xl mb-4 shadow-md bg-[var(--color-hotspot)/10] card">
+        <h2 class="text-lg font-semibold mb-4">Your Friends</h2>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+            <div *ngFor="let friend of friends"
+                 class="flex items-center p-4 rounded-xl shadow-sm transform transition duration-300 cursor-pointer
+                  hover:-translate-y-1 hover:shadow-md bg-[var(--color-hotspot)/20] hover:bg-[var(--color-hotspot)/40] card">
+
+                <!-- Avatar ou ícone -->
+                <div class="w-12 h-12 rounded-full flex items-center justify-center text-[var(--color-bg)] font-bold mr-4"
+                     [style.backgroundColor]="'var(--color-hotspot)/60'">
+                    {{ friend.username.charAt(0) }}
+                </div>
+
+                <!-- Nome e info -->
+                <div class="flex-1">
+                    <h3 class="font-semibold">{{ friend.username }}</h3>
+                    <p class="text-sm text-[var(--color-text)]/70">Friend since {{ friend.since | date:'shortDate' }}</p>
+                </div>
+
+                <!-- Status (opcional) -->
+                <div class="w-3 h-3 rounded-full"
+                     [ngClass]="true ? 'bg-green-500' : 'bg-gray-400'"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Se não houver friends -->
+    <div *ngIf="!friends || friends.length === 0" class="mt-4 text-[var(--color-text)]/70">
+        You don’t have friends yet. Invite someone!
+    </div>
+</div>

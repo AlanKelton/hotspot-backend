@@ -1,0 +1,49 @@
+<div class="min-h-screen flex flex-col items-center justify-start p-6 bg-[var(--color-bg)] text-[var(--color-text)]">
+
+    <div class="w-full max-w-md p-6 rounded-2xl shadow-lg bg-[var(--color-hotspot)]/10">
+        <h2 class="text-2xl font-bold mb-6 text-center">My Invites</h2>
+
+        <div class="grid gap-4">
+            <div *ngFor="let invite of invites"
+                 class="flex flex-col sm:flex-row justify-between items-start sm:items-center p-4 rounded-xl shadow-sm transform transition duration-300"
+                 [@fadeSlide]
+                 [style.backgroundColor]="getInviteBg(invite)"
+                 [style.cursor]="getInviteCursor(invite)"
+                 [ngClass]="{
+             'hover:-translate-y-1 hover:shadow-md': invite.status === 'NEW' || invite.status === 'PENDING'
+           }"
+                 (click)="openInviteOptions(invite)">
+
+                <!-- Código e Status -->
+                <div class="flex flex-col sm:flex-row sm:items-center">
+                    <span class="font-mono text-lg">{{ invite.code }}</span>
+                    <span class="ml-2 mt-1 sm:mt-0 text-sm font-semibold"
+                          [ngClass]="{
+                  'text-[var(--color-hotspot)]': invite.status === 'NEW',
+                  'text-yellow-600': invite.status === 'PENDING',
+                  'text-gray-600': invite.status === 'USED',
+                  'text-red-600': invite.status === 'REVOKED'
+                }">
+            {{ invite.status }}
+          </span>
+                </div>
+
+                <!-- Quem usou -->
+                <div *ngIf="invite.status === 'USED' && invite.usedBy" class="mt-2 sm:mt-0 text-sm flex items-center space-x-2">
+                    <div class="w-8 h-8 rounded-full bg-gray-400 flex items-center justify-center text-[var(--color-bg)] font-bold">
+                        {{ invite.usedBy.username.charAt(0) }}
+                    </div>
+                    <span>{{ invite.usedBy.username }}</span>
+                </div>
+
+                <!-- Botão Revoke -->
+                <button *ngIf="invite.status === 'PENDING'"
+                        class="ml-0 sm:ml-4 mt-2 sm:mt-0 px-3 py-1 rounded-lg text-[var(--color-text)] bg-red-600 hover:bg-red-700 transition-colors"
+                        (click)="revoke(invite)">
+                    Revoke
+                </button>
+            </div>
+        </div>
+    </div>
+
+</div>

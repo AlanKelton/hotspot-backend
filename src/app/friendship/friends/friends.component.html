@@ -1,0 +1,12 @@
+<div class="min-h-screen flex flex-col items-center bg-gray-900 p-4">
+    <div class="w-full max-w-md bg-gray-800 p-6 rounded-2xl shadow-lg">
+        <h2 class="text-2xl font-bold text-white mb-4 text-center">My Friends</h2>
+
+        <ul>
+            <li *ngFor="let friend of friends" class="mb-3 p-3 bg-gray-700 rounded-lg flex justify-between items-center">
+                <span class="text-white font-semibold">{{ friend.username }}</span>
+                <span class="text-gray-400 text-sm">{{ friend.email }}</span>
+            </li>
+        </ul>
+    </div>
+</div>

@@ -1,0 +1,22 @@
+<div class="min-h-screen flex flex-col items-center justify-center p-6 bg-[var(--color-bg)] text-[var(--color-text)]">
+
+    <div class="w-full max-w-md card bg-[var(--color-hotspot)/10]">
+
+        <!-- Título -->
+        <h2 class="text-xl font-bold mb-4">Send Invite</h2>
+
+        <!-- Descrição -->
+        <p class="mb-4">
+            Share this link with your friend to let them register:
+        </p>
+
+        <!-- Link do invite -->
+        <div class="p-3 rounded-lg mb-4 font-mono break-all bg-[var(--color-bg)] shadow-inner">
+            {{ inviteLink }}
+        </div>
+
+        <!-- Botão Copy -->
+        <button class="btn-hotspot w-full" (click)="copyLink()">Copy Link</button>
+
+    </div>
+</div>

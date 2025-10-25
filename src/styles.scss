@@ -1,1 +1,56 @@
-/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Variáveis do tema */
+:root {
+    --color-bg: #ffffff;
+    --color-text: #111827;    // Tailwind gray-900
+    --color-hotspot: #ef4444; // Tailwind red-500
+}
+:root {
+    --color-hotspot-icon: #ef4444; /* cor da marca */
+    --color-hotspot-rgb: 249 115 22; /* r g b sem parênteses */
+}
+
+.hotspot-icon {
+    color: var(--color-hotspot-icon);
+}
+
+
+/* Tema escuro */
+.dark {
+    --color-bg: #111827;
+    --color-text: #f9fafb;
+    --color-hotspot: #f97316; // laranja em dark mode
+}
+
+/* Estilos globais padronizados */
+.app-theme {
+    @apply min-h-screen;
+    background-color: var(--color-bg);
+    color: var(--color-text);
+}
+
+/* Cards padrão */
+.card {
+    @apply p-4 rounded-xl shadow-sm transition duration-300;
+    background-color: var(--color-bg);
+    color: var(--color-text);
+}
+
+/* Botões padrão */
+.btn-hotspot {
+    @apply rounded-md px-4 py-2 transition-colors;
+    background-color: var(--color-hotspot);
+    color: var(--color-bg);
+}
+
+.btn-hotspot:hover {
+    background-color: rgb(var(--color-hotspot-rgb) / 0.9);
+}
+
+/* Texto destacado (ex: status de invite) */
+.text-hotspot {
+    color: var(--color-hotspot);
+}
