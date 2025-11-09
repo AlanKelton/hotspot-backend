@@ -9,6 +9,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api/invites")
+@CrossOrigin
 public class InviteController {
 
     private final InviteService inviteService;
